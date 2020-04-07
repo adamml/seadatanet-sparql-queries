@@ -1,0 +1,1 @@
+SELECT ?s ?p ?o where {BIND(<http://edmerp.seadatanet.org/report/11730> AS ?s) ?s ?p ?o}
