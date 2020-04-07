@@ -1,0 +1,28 @@
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT ?s ?o ?p WHERE {
+	{BIND (<http://edmo.seadatanet.org/4155> as ?s) ?s ?o ?p} UNION 
+	{
+		BIND (<http://edmo.seadatanet.org/4155> as ?org)
+		?org <http://www.w3.org/ns/org#hasSite> ?s.
+		?s ?o ?p
+	} UNION {
+		BIND (<http://edmo.seadatanet.org/4155> as ?org)
+		?org <http://www.w3.org/ns/org#hasSite> ?site.
+		?site <http://www.w3.org/ns/org#siteAddress> ?s.
+		?s ?o ?p
+	}
+	UNION {
+		BIND (<http://edmo.seadatanet.org/4155> as ?org)
+		?org <http://www.w3.org/ns/org#hasSite> ?site.
+		?site <http://www.w3.org/ns/org#siteAddress> ?a.
+		?a <http://www.w3.org/2006/vcard/ns#hasGeo> ?s.
+		?s ?o ?p
+	} UNION {
+		BIND (<http://edmo.seadatanet.org/4155> as ?org)
+		?org <http://www.w3.org/ns/org#hasSite> ?site.
+		?site <http://www.w3.org/ns/org#siteAddress> ?a.
+		?a <http://www.w3.org/2006/vcard/ns#hasTelephone> ?s.
+		?s ?o ?p
+	}
+}
