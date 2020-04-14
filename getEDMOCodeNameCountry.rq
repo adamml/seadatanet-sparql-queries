@@ -1,0 +1,11 @@
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT DISTINCT ?EDMO_CODE ?ORG_NAME ?COUNTRY WHERE {
+	?EDMO_URL rdf:type <http://www.w3.org/ns/org#Organization>. 
+	?EDMO_URL skos:prefLabel ?ORG_NAME.
+	?EDMO_URL skos:notation ?EDMO_CODE.
+	?EDMO_URL <http://www.w3.org/ns/org#hasSite> ?SITE.
+	?SITE <http://www.w3.org/ns/org#siteAddress> ?SITE_ADDRESS.
+	?SITE_ADDRESS <http://www.w3.org/2006/vcard/ns#country-name> ?COUNTRY.
+	FILTER(LANG(?ORG_NAME)="en")
+} ORDER By ?ORG_NAME
