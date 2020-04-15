@@ -12,6 +12,11 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 		?s ?p ?o
 	} UNION {
 		BIND(<https://www.bodc.ac.uk/resources/inventories/edmed/report/4565/> AS ?ss).
+		?ss <http://www.w3.org/ns/prov#qualifiedAttribution> ?sss.
+		?sss <http://www.w3.org/ns/prov#agent> ?s.
+		?s ?p ?o
+	}UNION {
+		BIND(<https://www.bodc.ac.uk/resources/inventories/edmed/report/4565/> AS ?ss).
 		?ss <http://www.w3.org/ns/dcat#distribution> ?s.
 		?s ?p ?o
 	} UNION {
@@ -43,6 +48,14 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 		?oo <http://www.w3.org/ns/prov#generated> ?ooo.
 		?ooo <http://www.w3.org/ns/prov#qualifiedAssociation> ?oooo.
 		?oooo <http://www.w3.org/ns/prov#hadPlan> ?s.
+		?s ?p ?o
+	} UNION {
+		BIND(<https://www.bodc.ac.uk/resources/inventories/edmed/report/4565/> AS ?ss).
+		?ss <http://www.w3.org/ns/prov#wasUsedBy> ?oo.
+		?oo <http://www.w3.org/ns/prov#generated> ?ooo.
+		?ooo <http://www.w3.org/ns/prov#qualifiedAssociation> ?oooo.
+		?oooo <http://www.w3.org/ns/prov#hadPlan> ?ooooo.
+		?ooooo <http://www.w3.org/ns/prov#wasDerivedFrom> ?s.
 		?s ?p ?o
 	}
 }
