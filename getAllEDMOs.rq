@@ -1,3 +1,4 @@
+PREFIX org: <http://www.w3.org/ns/org#>
 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
 PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-SELECT DISTINCT ?s ?p WHERE {?s rdf:type <http://www.w3.org/ns/org#Organization>. ?s skos:prefLabel ?p} ORDER By ?p
+SELECT DISTINCT ?s ?p WHERE {?s rdf:type <http://www.w3.org/ns/org#Organization>. ?s org:name ?p} ORDER By ?p
